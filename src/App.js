@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+import AddTask from "./components/AddTask";
+import DoneTask from "./components/DoneTask";
+import Task from "./components/Task";
+import TaskList from "./components/TaskList";
+
+import "./App.css";
+
+const App = () => {
+  let activeTaskList = [
+    {
+      title: "Odrobic lekcje z matematyki",
+      date: "2021-02-30",
+      important: false,
+    },
+  ];
+  let doneTaskList = [];
+
+  const handleTaskBtnClick = () => {
+    console.log("click");
+  };
+
+  const activeTasks = activeTaskList.map((task) => (
+    <Task
+      key={task.id}
+      title={task.title}
+      date={task.date}
+      important={task.important}
+      click={handleTaskBtnClick}
+    />
+  ));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="AddTask">
+        <AddTask />
+      </div>
+      <div className="TaskList">
+        <TaskList tasks={activeTasks} />
+      </div>
+      <div className="DoneTask">
+        <DoneTask />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
