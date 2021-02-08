@@ -1,3 +1,3 @@
-#Simple todoList
+Simple todoList
 
-##[demo](https://simple-to-do-list.vercel.app/)
+[demo](https://simple-to-do-list.vercel.app/)
