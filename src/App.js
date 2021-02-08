@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import AddTask from "./components/AddTask";
 import DoneTask from "./components/DoneTask";
@@ -8,46 +9,27 @@ import TaskList from "./components/TaskList";
 import "./App.css";
 
 const App = () => {
-  const [activeTaskList, setActiveTaskList] = useState([
-    {
-      id: 0,
-      title: "Odrobic lekcje z matematyki",
-      date: "2021-02-30",
-      important: false,
-    },
-    {
-      id: 1,
-      title: "Odrobic lekcje z Polskiego",
-      date: "2021-01-20",
-      important: true,
-    },
-    {
-      id: 2,
-      title: "Odrobic lekcje z fizyki",
-      date: "2021-03-30",
-      important: false,
-    },
-  ]);
+  const [activeTaskList, setActiveTaskList] = useState([]);
   const [doneTaskList, setDoneTaskList] = useState([]);
 
   //Add Task
   const handleAddTask = (title, date, important) => {
     const taskList = [...activeTaskList];
     const task = {
-      id: Math.floor(Math.random() * 1500),
+      id: uuidv4(),
       title,
       date,
       important,
     };
     taskList.push(task);
-    console.log("xd");
     setActiveTaskList(taskList);
   };
   //Edit task
-  const handleTaskEdit = (value, id) => {
+  const handleTaskEdit = (value, id, editDate) => {
     const taskList = [...activeTaskList];
     const index = taskList.findIndex((task) => task.id === id);
     taskList[index].title = value;
+    taskList[index].date = editDate;
     setActiveTaskList(taskList);
   };
 
@@ -59,7 +41,6 @@ const App = () => {
     const indexDone = taskListDone.findIndex((task) => task.id === id);
 
     if (type === "DELETE") {
-      console.log(indexActive, indexDone);
       if (indexActive !== -1) {
         taskListActive.splice(indexActive, 1);
         setActiveTaskList(taskListActive);

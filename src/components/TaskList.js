@@ -1,10 +1,11 @@
 import React from "react";
 
-const TaskList = (props) => {
+const TaskList = ({ tasks }) => {
   return (
     <>
       <h1>Aktywne zadania</h1>
-      <span>{props.tasks}</span>
+      <span>({tasks.length})</span>
+      <span>{tasks}</span>
     </>
   );
 };

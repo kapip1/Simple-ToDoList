@@ -1,26 +1,41 @@
 import React, { useState } from "react";
 
-const AddTask = (props) => {
-  const { add } = props;
-
+const AddTask = ({ add }) => {
+  const [date, setDate] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const [check, setCheck] = useState(false);
 
-  const handleInputChange = (e) => {
+  const handleInputDateChange = (e) => {
+    console.log(e.target.value);
+    setDate(e.target.value);
+  };
+  const handleInputValueChange = (e) => {
     setInputValue(e.target.value);
   };
-  const handleCheckBoxChange = () => {};
+  const handleCheckBoxChange = () => {
+    setCheck(!check);
+  };
   const handleBtnAddTask = () => {
     if (inputValue.length > 3) {
-      add(inputValue, "2002-08-05", true);
+      add(inputValue, date, check);
+      setInputValue("");
+      setDate("");
+      setCheck(false);
     } else {
-      alert("zla forma inputa");
+      console.log(date);
+      setCheck(false);
     }
   };
 
   return (
     <>
       <br />
-      <input type="text" value={inputValue} onChange={handleInputChange} />
+      Nazwa:
+      <input type="text" value={inputValue} onChange={handleInputValueChange} />
+      data:
+      <input type="date" value={date} onChange={handleInputDateChange} />
+      ważne:{" "}
+      <input type="checkbox" checked={check} onChange={handleCheckBoxChange} />
       <button onClick={handleBtnAddTask}>add task</button>
     </>
   );

@@ -5,6 +5,7 @@ const Task = (props) => {
 
   const [toggle, setToggle] = useState(false);
   const [inputValue, setInputValue] = useState(title);
+  const [editDate, setEditDate] = useState(date);
 
   //EDIT FUNCTIONS
   const handleEditBtnName = () => {
@@ -18,10 +19,13 @@ const Task = (props) => {
   const handleChangeEditInput = (e) => {
     setInputValue(e.target.value);
   };
+  const handleChangeDateEdit = (e) => {
+    setEditDate(e.target.value);
+  };
   const handleEditBtnClick = () => {
     if (inputValue.length > 3) {
-      edit(inputValue, id);
-      setInputValue(title);
+      edit(inputValue, id, editDate);
+      setInputValue(inputValue);
       setToggle(false);
     } else {
       alert("podaj poprawna wartosc do edytowania");
@@ -47,6 +51,12 @@ const Task = (props) => {
     <>
       <button onClick={handleEditBtnClick}>zatwierdz zmiane</button>
       <input type="text" value={inputValue} onChange={handleChangeEditInput} />
+      <input
+        type="date"
+        min="2020-01-01"
+        value={editDate}
+        onChange={handleChangeDateEdit}
+      />
     </>
   ) : null;
   const isImportant = important ? { color: "red" } : { color: "black" };
@@ -57,7 +67,8 @@ const Task = (props) => {
         {isEditing ? isEditing : title}
       </span>
       <span className="task__date" style={isActive}>
-        {date}
+        {" "}
+        {isEditing ? null : date}
       </span>
 
       <button className="task__button-remove" onClick={handleDeleteBtnClick}>

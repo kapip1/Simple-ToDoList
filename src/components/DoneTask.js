@@ -1,10 +1,11 @@
 import React from "react";
 
-const DoneTask = (props) => {
+const DoneTask = ({ tasks }) => {
   return (
     <>
       <h1>Zadania zrobionie</h1>
-      <h3>{props.tasks}</h3>
+      <span>({tasks.length})</span>
+      <h3>{tasks}</h3>
     </>
   );
 };
