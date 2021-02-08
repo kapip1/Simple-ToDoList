@@ -49,9 +49,17 @@ const Task = (props) => {
   const isActive = active ? null : { textDecoration: "line-through" };
   const isEditing = toggle ? (
     <>
-      <button onClick={handleEditBtnClick}>zatwierdz zmiane</button>
-      <input type="text" value={inputValue} onChange={handleChangeEditInput} />
+      <button className="edit__button-confirm" onClick={handleEditBtnClick}>
+        zatwierdz zmiane
+      </button>
       <input
+        className="edit__input-name"
+        type="text"
+        value={inputValue}
+        onChange={handleChangeEditInput}
+      />
+      <input
+        className="edit__input-date"
         type="date"
         min="2020-01-01"
         value={editDate}

@@ -1,0 +1,25 @@
+.addtask {
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+    align-items: center;
+    justify-content: space-between;
+}
+.addtask__button {
+    margin: 0 auto;
+    height: 50px;
+    width: 90px;
+    cursor: pointer;
+    /* background-color: greenyellow; */
+    border: none;
+    border-radius: 10px;
+}
+.addtask__input-name {
+    margin: 0 auto;
+}
+.addtask__input-date {
+    margin: 0 auto;
+}
+.addtask__checkbox-important {
+    margin: 0 auto;
+}

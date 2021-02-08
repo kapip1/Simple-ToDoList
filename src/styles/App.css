@@ -11,8 +11,11 @@
   text-align: center;
 }
 .AddTask {
-  flex-basis: 20vh;
+  display: flex;
+  flex-basis: 10vh;
   width: 100%;
+  justify-content: center;
+  background-color: #ddd;
 }
 .TaskList {
   flex-basis: 50vh;

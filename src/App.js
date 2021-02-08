@@ -6,7 +6,7 @@ import DoneTask from "./components/DoneTask";
 import Task from "./components/Task";
 import TaskList from "./components/TaskList";
 
-import "./App.css";
+import "./styles/App.css";
 
 const App = () => {
   const [activeTaskList, setActiveTaskList] = useState([]);
