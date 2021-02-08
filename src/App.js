@@ -30,7 +30,20 @@ const App = () => {
   ]);
   const [doneTaskList, setDoneTaskList] = useState([]);
 
-  //edit task
+  //Add Task
+  const handleAddTask = (title, date, important) => {
+    const taskList = [...activeTaskList];
+    const task = {
+      id: Math.floor(Math.random() * 1500),
+      title,
+      date,
+      important,
+    };
+    taskList.push(task);
+    console.log("xd");
+    setActiveTaskList(taskList);
+  };
+  //Edit task
   const handleTaskEdit = (value, id) => {
     const taskList = [...activeTaskList];
     const index = taskList.findIndex((task) => task.id === id);
@@ -38,7 +51,7 @@ const App = () => {
     setActiveTaskList(taskList);
   };
 
-  //delete task and done task
+  //Delete task and done task
   const handleTaskBtnClick = (type, id) => {
     const taskListActive = [...activeTaskList];
     const taskListDone = [...doneTaskList];
@@ -96,7 +109,7 @@ const App = () => {
   return (
     <div className="App">
       <div className="AddTask">
-        <AddTask />
+        <AddTask add={handleAddTask} />
       </div>
       <div className="TaskList">
         <TaskList tasks={activeTasks} />

@@ -27,10 +27,12 @@ const Task = (props) => {
       alert("podaj poprawna wartosc do edytowania");
     }
   };
+
   //DELETE FUNCTIONS
   const handleDeleteBtnClick = () => {
     click("DELETE", id);
   };
+
   //DONE FUNCTIONS
   const handleDoneBtnClick = () => {
     click("DONE", id);
@@ -38,6 +40,9 @@ const Task = (props) => {
   const handleRestoreBtnClick = () => {
     click("RESTORE", id);
   };
+
+  //STYLES
+  const isActive = active ? null : { textDecoration: "line-through" };
   const isEditing = toggle ? (
     <>
       <button onClick={handleEditBtnClick}>zatwierdz zmiane</button>
@@ -48,8 +53,12 @@ const Task = (props) => {
 
   return (
     <div className="task" style={isImportant}>
-      <span className="task__title">{isEditing ? isEditing : title}</span>
-      <span className="task__date">{date}</span>
+      <span className="task__title" style={isActive}>
+        {isEditing ? isEditing : title}
+      </span>
+      <span className="task__date" style={isActive}>
+        {date}
+      </span>
 
       <button className="task__button-remove" onClick={handleDeleteBtnClick}>
         usuń zadanie
