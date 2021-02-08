@@ -4,22 +4,57 @@
     width: 40%;
     align-items: center;
     justify-content: space-between;
+    justify-content: center;
 }
+input:focus {
+    outline: none;
+}
+
 .addtask__button {
     margin: 0 auto;
-    height: 50px;
-    width: 90px;
+    height: 40px;
+    border: 2px solid #4caf50;
+    width: 100px;
+    background: white;
     cursor: pointer;
-    /* background-color: greenyellow; */
-    border: none;
+    color: #4caf50;
     border-radius: 10px;
+    transition: .1s linear;
+}
+.addtask__button:hover {
+    background-color:#4caf50;
+    color: white;
 }
 .addtask__input-name {
+    cursor: pointer;
     margin: 0 auto;
+}
+.addtask__input-name input{
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+    border: 0.2px grey solid;
 }
 .addtask__input-date {
+    cursor: pointer;
     margin: 0 auto;
 }
+.addtask__input-date input {
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+    width: 150px;
+    border: 0.2px grey solid;
+}
 .addtask__checkbox-important {
+    cursor: pointer;
     margin: 0 auto;
+
+}
+.addtask__checkbox-important input{
+    margin-left: 5px;
+    align-items: center;
+    cursor: pointer;
 }

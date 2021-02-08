@@ -3,9 +3,9 @@ import React from "react";
 const DoneTask = ({ tasks }) => {
   return (
     <>
-      <h1>Zadania zrobionie</h1>
-      <span>({tasks.length})</span>
-      <h3>{tasks}</h3>
+      <h2>Done tasks</h2>
+      <h3>{tasks.length}</h3>
+      <span>{tasks}</span>
     </>
   );
 };

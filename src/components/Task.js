@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import "../styles/Task.css";
 const Task = (props) => {
   const { important, title, date, click, id, edit, active } = props;
 
@@ -23,21 +24,15 @@ const Task = (props) => {
     setEditDate(e.target.value);
   };
   const handleEditBtnClick = () => {
-    if (inputValue.length > 3) {
-      edit(inputValue, id, editDate);
-      setInputValue(inputValue);
-      setToggle(false);
-    } else {
-      alert("podaj poprawna wartosc do edytowania");
-    }
+    edit(inputValue, id, editDate);
+    setInputValue(inputValue);
+    setToggle(false);
   };
 
-  //DELETE FUNCTIONS
   const handleDeleteBtnClick = () => {
     click("DELETE", id);
   };
 
-  //DONE FUNCTIONS
   const handleDoneBtnClick = () => {
     click("DONE", id);
   };
@@ -45,12 +40,13 @@ const Task = (props) => {
     click("RESTORE", id);
   };
 
-  //STYLES
-  const isActive = active ? null : { textDecoration: "line-through" };
+  const isActive = active
+    ? null
+    : { textDecoration: "line-through", opacity: "0.25" };
   const isEditing = toggle ? (
     <>
       <button className="edit__button-confirm" onClick={handleEditBtnClick}>
-        zatwierdz zmiane
+        confirm edit
       </button>
       <input
         className="edit__input-name"
@@ -71,6 +67,9 @@ const Task = (props) => {
 
   return (
     <div className="task" style={isImportant}>
+      <button className="task__button-remove" onClick={handleDeleteBtnClick}>
+        remove task
+      </button>
       <span className="task__title" style={isActive}>
         {isEditing ? isEditing : title}
       </span>
@@ -79,13 +78,9 @@ const Task = (props) => {
         {isEditing ? null : date}
       </span>
 
-      <button className="task__button-remove" onClick={handleDeleteBtnClick}>
-        usuń zadanie
-      </button>
-
       {active ? (
         <button className="task__button-done" onClick={handleDoneBtnClick}>
-          zakończ zadanie
+          complete task
         </button>
       ) : null}
       {active ? (
@@ -98,7 +93,7 @@ const Task = (props) => {
           className="task__button-restore"
           onClick={handleRestoreBtnClick}
         >
-          Przywróć zadanie
+          restore task
         </button>
       )}
     </div>

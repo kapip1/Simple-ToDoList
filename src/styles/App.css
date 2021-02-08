@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+button:focus {
+  outline: none;
 }
 .App {
   display: flex;
@@ -15,7 +19,7 @@
   flex-basis: 10vh;
   width: 100%;
   justify-content: center;
-  background-color: #ddd;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 .TaskList {
   flex-basis: 50vh;

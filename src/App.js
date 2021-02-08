@@ -93,10 +93,10 @@ const App = () => {
         <AddTask add={handleAddTask} />
       </div>
       <div className="TaskList">
-        <TaskList tasks={activeTasks} />
+        <TaskList tasks={activeTasks.reverse()} />
       </div>
       <div className="DoneTask">
-        <DoneTask tasks={doneTasks} />
+        <DoneTask tasks={doneTasks.reverse()} />
       </div>
     </div>
   );

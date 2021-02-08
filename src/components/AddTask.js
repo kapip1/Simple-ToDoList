@@ -24,7 +24,8 @@ const AddTask = ({ add }) => {
       setDate("");
       setCheck(false);
     } else {
-      console.log(date);
+      setDate("");
+      alert("task name must be at least 3 letters long");
       setCheck(false);
     }
   };
@@ -32,8 +33,9 @@ const AddTask = ({ add }) => {
   return (
     <div className="addtask">
       <label className="addtask__input-name" htmlFor="name">
-        Name:
+        Name
         <input
+          placeholder="Task name ..."
           id="name"
           type="text"
           value={inputValue}
@@ -41,7 +43,7 @@ const AddTask = ({ add }) => {
         />
       </label>
       <label className="addtask__input-date" htmlFor="date">
-        Date:
+        Date
         <input
           id="date"
           type="date"
@@ -50,7 +52,7 @@ const AddTask = ({ add }) => {
         />
       </label>
       <label className="addtask__checkbox-important" htmlFor="checkbox">
-        Important:
+        Important
         <input
           id="checkbox"
           type="checkbox"
