@@ -40,15 +40,32 @@ const App = () => {
 
   //delete task and done task
   const handleTaskBtnClick = (type, id) => {
-    const taskList = [...activeTaskList];
-    if (type === "delete") {
-      const index = taskList.findIndex((task) => task.id === id);
-      taskList.splice(index, 1);
-      setActiveTaskList(taskList);
+    const taskListActive = [...activeTaskList];
+    const taskListDone = [...doneTaskList];
+    const indexActive = taskListActive.findIndex((task) => task.id === id);
+    const indexDone = taskListDone.findIndex((task) => task.id === id);
+
+    if (type === "DELETE") {
+      console.log(indexActive, indexDone);
+      if (indexActive !== -1) {
+        taskListActive.splice(indexActive, 1);
+        setActiveTaskList(taskListActive);
+      } else if (indexDone !== -1) {
+        taskListDone.splice(indexDone, 1);
+        setDoneTaskList(taskListDone);
+      }
     }
-    if (type === "done") {
-      const index = taskList.findIndex((task) => task.id === id);
-      console.log("zadanie zakonczone " + index);
+    if (type === "DONE") {
+      taskListDone.push(taskListActive[indexActive]);
+      taskListActive.splice(indexActive, 1);
+      setDoneTaskList(taskListDone);
+      setActiveTaskList(taskListActive);
+    }
+    if (type === "RESTORE") {
+      taskListActive.push(taskListDone[indexDone]);
+      taskListDone.splice(indexDone, 1);
+      setDoneTaskList(taskListDone);
+      setActiveTaskList(taskListActive);
     }
   };
 
@@ -61,16 +78,18 @@ const App = () => {
       important={task.important}
       click={handleTaskBtnClick}
       edit={handleTaskEdit}
+      active={true}
     />
   ));
   const doneTasks = doneTaskList.map((task) => (
     <Task
-      key={task.id}
       title={task.title}
+      key={task.id}
       date={task.date}
       id={task.id}
       important={task.important}
       click={handleTaskBtnClick}
+      active={false}
     />
   ));
 

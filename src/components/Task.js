@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Task = (props) => {
-  const { important, title, date, click, id, edit } = props;
+  const { important, title, date, click, id, edit, active } = props;
 
   const [toggle, setToggle] = useState(false);
   const [inputValue, setInputValue] = useState(title);
@@ -29,7 +29,14 @@ const Task = (props) => {
   };
   //DELETE FUNCTIONS
   const handleDeleteBtnClick = () => {
-    click("delete", id);
+    click("DELETE", id);
+  };
+  //DONE FUNCTIONS
+  const handleDoneBtnClick = () => {
+    click("DONE", id);
+  };
+  const handleRestoreBtnClick = () => {
+    click("RESTORE", id);
   };
   const isEditing = toggle ? (
     <>
@@ -43,15 +50,29 @@ const Task = (props) => {
     <div className="task" style={isImportant}>
       <span className="task__title">{isEditing ? isEditing : title}</span>
       <span className="task__date">{date}</span>
+
       <button className="task__button-remove" onClick={handleDeleteBtnClick}>
         usuń zadanie
       </button>
-      <button className="task__button-done" onClick={() => click("done", id)}>
-        zakończ zadanie
-      </button>
-      <button className="task__button-edit" onClick={handleEditBtnName}>
-        {toggle ? " X " : "edit"}
-      </button>
+
+      {active ? (
+        <button className="task__button-done" onClick={handleDoneBtnClick}>
+          zakończ zadanie
+        </button>
+      ) : null}
+      {active ? (
+        <button className="task__button-edit" onClick={handleEditBtnName}>
+          {toggle ? " X " : "edit"}
+        </button>
+      ) : null}
+      {active ? null : (
+        <button
+          className="task__button-restore"
+          onClick={handleRestoreBtnClick}
+        >
+          Przywróć zadanie
+        </button>
+      )}
     </div>
   );
 };
